@@ -9,7 +9,7 @@ class ArtService {
     const response = await api.get('api/artworks')
     logger.log('got art', response.data)
     const art = response.data.artworks.map(pojo => new Art(pojo))
-    AppState.Art = art
+    AppState.artworks = art
   }
 }
 

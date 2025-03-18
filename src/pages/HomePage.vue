@@ -6,7 +6,12 @@ import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted, onUnmounted } from 'vue';
 
-const art = computed(() => AppState.Art)
+const artworks = computed(() => AppState.artworks)
+
+// const greetings = [
+//   { name: 'mick' },
+//   { name: 'adam' }
+// ]
 
 onMounted(() => {
   logger.log('home page is mounted')
@@ -32,10 +37,14 @@ async function getArt() {
 </script>
 
 <template>
+
+  <!-- <div v-for="item in greetings">
+    {{ item }}
+  </div> -->
   <section class="container">
-    <div class="row">
-      <div class="col-md-3 artwork">
-        <div>{{ art }}</div>
+    <div class="row align- items-stretch">
+      <div v-for="item in artworks" :key="item.id" class="col-md-3 border d-flex">
+        <img :src="item.imgUrls.small" :alt="item.slug" class="img-fluid">
       </div>
     </div>
   </section>
