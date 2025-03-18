@@ -1,8 +1,12 @@
 <script setup>
+import { AppState } from '@/AppState.js';
+import { Art } from '@/models/Art.js';
 import { artService } from '@/services/ArtService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
+
+const art = computed(() => AppState.Art)
 
 onMounted(() => {
   logger.log('home page is mounted')
@@ -25,14 +29,14 @@ async function getArt() {
 
 
 
-
-
 </script>
 
 <template>
   <section class="container">
     <div class="row">
-      <div class="col-md-3">images go here</div>
+      <div class="col-md-3 artwork">
+        <div>{{ art }}</div>
+      </div>
     </div>
   </section>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
 import { RouterView } from 'vue-router';
+import { AppState } from "@/AppState.js"
 
 </script>
 
