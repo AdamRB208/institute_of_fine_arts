@@ -42,15 +42,18 @@ async function getArt() {
     {{ item }}
   </div> -->
   <section class="container">
-    <div class="row align- items-stretch">
-      <div v-for="item in artworks" :key="item.id" class="col-md-3 border d-flex">
+    <div class="row">
+      <div v-for="item in artworks" :key="item.id" class="col-md-3 border ">
         <img :src="item.imgUrls.small" :alt="item.slug" class="img-fluid">
+        <p class="m-1">
+          {{ item.description }} {{ item.attribution }}
+        </p>
       </div>
     </div>
   </section>
 </template>
 
-
+//NOTE create card for artworks then create Props
 
 
 <style scoped lang="scss"></style>
