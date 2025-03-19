@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import ArtworksCard from '@/components/ArtworksCard.vue';
+import PageButtons from '@/components/PageButtons.vue';
 import { Art } from '@/models/Art.js';
 import { artService } from '@/services/ArtService.js';
 import { logger } from '@/utils/Logger.js';
@@ -9,9 +10,6 @@ import { computed, onMounted, onUnmounted } from 'vue';
 
 const artworks = computed(() => AppState.artworks)
 
-const currentPage = computed(() => AppState.currentPage)
-
-const totalPages = computed(() => AppState.totalPages)
 
 // const greetings = [
 //   { name: 'mick' },
@@ -37,14 +35,6 @@ async function getArt() {
   }
 }
 
-async function getNextPage(pageNumber) {
-  try {
-    await artService.changeHomePage(pageNumber)
-  } catch (error) {
-    Pop.error(error, 'could not get next page')
-    logger.error('could not get next page', error)
-  }
-}
 
 </script>
 
@@ -53,9 +43,9 @@ async function getNextPage(pageNumber) {
   <!-- <div v-for="item in greetings">
     {{ item }}
   </div> -->
-  <section class="container">
+  <div class="container">
     <div class="row">
-      <button :disabled="currentPage == 1" @click="getNextPage(currentPage - 1)"
+      <!-- <button :disabled="currentPage == 1" @click="getNextPage(currentPage - 1)"
         class="col-md-3 btn btn-outline-success mt-2 text-success">
         previous
       </button>
@@ -64,8 +54,11 @@ async function getNextPage(pageNumber) {
       <button :disabled="currentPage == 35" @click="getNextPage(currentPage + 1)"
         class="col-md-3 btn btn-outline-success mt-2 text-success">
         next
-      </button>
+      </button> -->
+      <PageButtons />
     </div>
+  </div>
+  <section class="container">
     <div class="row">
       <div v-for="art in artworks" :key="art.id" class="col-md-3 border-success">
         <!-- <img :src="item.imgUrls.small" :alt="item.slug" class="img-fluid mt-2">
@@ -77,6 +70,7 @@ async function getNextPage(pageNumber) {
       </div>
     </div>
   </section>
+  <PageButtons />
 </template>
 
 
