@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { Art } from './models/Art.js'
+import { Art } from '@/models/Art.js';
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -8,6 +8,10 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} user info from the database*/
   account: null,
   /** @type {import('./models/Art.js').Art[]} user info from the sandbox API*/
-  artworks: []
+  artworks: [],
+
+  currentPage: 1,
+
+  totalPages: 35,
 })
 
