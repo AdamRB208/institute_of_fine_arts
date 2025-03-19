@@ -19,6 +19,8 @@ class ArtService {
     logger.log('changed home page', response.data)
     const art = response.data.artworks.map(pojo => new Art(pojo))
     AppState.artworks = art
+    AppState.currentPage = response.data.page
+    AppState.totalPages = response.data.totalPages
   }
 }
 

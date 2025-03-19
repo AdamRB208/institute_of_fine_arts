@@ -37,9 +37,9 @@ async function getArt() {
   }
 }
 
-async function getNextPage(currentPage) {
+async function getNextPage(pageNumber) {
   try {
-    await artService.changeHomePage(currentPage)
+    await artService.changeHomePage(pageNumber)
   } catch (error) {
     Pop.error(error, 'could not get next page')
     logger.error('could not get next page', error)
@@ -55,12 +55,14 @@ async function getNextPage(currentPage) {
   </div> -->
   <section class="container">
     <div class="row">
-      <button class="col-md-3 btn btn-outline-success mt-2 text-success">
+      <button :disabled="currentPage == 1" @click="getNextPage(currentPage - 1)"
+        class="col-md-3 btn btn-outline-success mt-2 text-success">
         previous
       </button>
       <div class="col-md-2 text-center align-content-center text-success"> Page {{ currentPage }}
       </div>
-      <button @click="getNextPage(currentPage + 1)" class="col-md-3 btn btn-outline-success mt-2 text-success">
+      <button :disabled="currentPage == 35" @click="getNextPage(currentPage + 1)"
+        class="col-md-3 btn btn-outline-success mt-2 text-success">
         next
       </button>
     </div>
